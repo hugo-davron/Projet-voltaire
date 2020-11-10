@@ -1,0 +1,4 @@
+customer,supplier,lang,name,ref,category_id
+False,True,fr_FR,Toshiba,TA,Fournisseurs
+False,True,,ASUStek,AS,Fournisseurs
+True,False,fr_FR,Agathe Zeblouse,AZ,Clients internet

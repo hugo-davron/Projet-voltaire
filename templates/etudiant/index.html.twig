@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+{% block title %} Accueil {% endblock %}
+{% block body %}
+<h1> Bienvenue sur le site Exploitation des données du site Projet Voltaire
+
+{% if is_granted('ROLE_ADMIN') %}
+  {{user.login}}. ! </h1>
+{% elseif is_granted('ROLE_USER') %}
+    {% for etudiant in alletudiant %}
+        {% if etudiant.login == user.login %}
+            {{etudiant.nomEtudiant}} {{etudiant.prenomEtudiant}}.</h1>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+
+
+{% if is_granted('ROLE_ADMIN') %}
+<p> Voici la liste des étudiants disponibles sur notre base de données , il y en a {{etudiants|length}} . Groupe : {{groupeactuel}} </p>
+<table>
+    <tr>
+        <th class=colonne> Nom Etudiant </th>
+        <th class=colonne> Prenom Etudiant </th>
+        <th class=colonne> Identifiant Etudiant </th>
+    </tr>
+    <form method = "get" action="http://webinfo.iutmontp.univ-montp2.fr/~cadarsir/pag/public/index.php/preference">
+        <p> Trier par groupe : </p>
+        <select name="preference">
+            {% for groupe in groupes |sort %}
+            <option value="{{groupe}}">{{groupe}}</option>
+            {% endfor %}
+            <option value=""> Tous </option>
+        </select>
+        <br><br>
+        <input type="submit">
+    </form>
+    {% for etudiant in etudiants |sort %}
+    <tr> <th>{{ etudiant.nomEtudiant }}</th> <th>{{ etudiant.prenomEtudiant }}</th> <th> <a href = "http://webinfo.iutmontp.univ-montp2.fr/~cadarsir/pag/public/index.php/etudiant/noterEtudiant/{{etudiant.login}}" >{{ etudiant.login }} </a></th></tr>
+
+    {% endfor %}
+</table>
+{% elseif is_granted('ROLE_USER') %}
+
+<p> Vous pouvez consulter vos données du projet Voltaire en cliquant ici : </p> <a href="http://webinfo.iutmontp.univ-montp2.fr/~cadarsir/pag/public/index.php/etudiant/noterEtudiant/{{user.login}}"> accéder à mes données </a>
+
+{% else %}
+</h1><p> Vous n'êtes pas connecté ! cliquez ici pour vous connecter : </p> <a href="http://webinfo.iutmontp.univ-montp2.fr/~cadarsir/pag/public/index.php/login"> Se connecter </a>
+
+{% endif %}
+
+{% endblock %}

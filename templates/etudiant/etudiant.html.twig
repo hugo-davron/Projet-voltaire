@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Information sur l'étudiant {{ etudiant.nomEtudiant }} {{etudiant.prenomEtudiant}}!{% endblock %}
+
+{% block body %}
+
+{% if is_granted('ROLE_ADMIN') %}
+<h1> Etudiant {{ etudiant.nomEtudiant }} {{etudiant.prenomEtudiant}} : </h1>
+<p> L'étudiant {{etudiant.nomEtudiant}} {{etudiant.prenomEtudiant}} est dans le groupe {{etudiant.groupe}}. Il à passé {{tps}} sur le site du projet Voltaire, il a eu {{resultat.scoreEvaluationInitiale}}% à l'examen initial. Il est donc noté avec le barème "{{bareme.nomBareme}}". Sa note globale s'éleve à {{notetotale}} avec : </p> <div id=letudiant><br> <ul> <li> {% if noterResultatFinal %} {{pointProgression}} points pour la progression {% endif %} {% if noterResultatFinal == 0 %} {{pointProgression}} points pour la progression , l'étudiant n'a pas encore passé le test final. {% endif %}</li> <li> {{pointNiveau}} points pour le nombre de niveaux acquis avec {{ niveauatteint }} niveaux validés</li> <li> {{pointUtilisation}} points pour le temps passé sur le site. <li> {% if noterResultatFinal %} {{pointEvalfinale}} points pour l'évaluation finale {% endif %} {% if noterResultatFinal == 0 %} {{pointEvalfinale}} points pour l'évaluation finale, l'étudiant n'a pas encore passé le test final. {% endif %}</li>
+  </li></ul> </div><br><br>
+  Voulez vous noter cet étudiant avec un autre barème? 
+  <form action="http://webinfo.iutmontp.univ-montp2.fr/~cadarsir/pag/public/index.php/etudiant/changerBareme/{{etudiant.login}}">
+    <select name="nomBareme">
+    <option value="{{bareme.nomBareme}}">{{bareme.nomBareme}}</option>
+     {% for bareme in allbareme %}
+     <option value="{{bareme.nomBareme}}">{{bareme.nomBareme}}</option>
+     {% endfor %}
+   </select>
+   <br><br>
+   <input type="submit">
+ </form>
+ <div>
+ <img src="http://webinfo.iutmontp.univ-montp2.fr/~cadarsir/pag/public/testgraphs.php?serializedresult={{ serializedresult }}">
+ <img src="http://webinfo.iutmontp.univ-montp2.fr/~cadarsir/pag/public/testgraphs2.php?sm1={{serializedm1}}&sm2={{serializedm2}}&sm3={{serializedm3}}&sm4={{serializedm4}}&sm5={{serializedm5}}&sm6={{serializedm6}}">
+</div>
+  <img src="http://webinfo.iutmontp.univ-montp2.fr/~cadarsir/pag/public/testpie.php?serializedtpsniv={{ serializedtpsniv }}&serializedlgniv={{serializedlgniv}}">
+ {% endif %}
+ {% if is_granted('ROLE_USER') %}
+ {% if user.Login == etudiant.login %}
+ <h1> Etudiant {{ etudiant.nomEtudiant }} {{etudiant.prenomEtudiant}} : </h1>
+ <p> Vous ({{etudiant.nomEtudiant}} {{etudiant.prenomEtudiant}}) avez passé {{tps}} sur le site du projet Voltaire, vous avez eu {{resultat.scoreEvaluationInitiale}}% à l'examen initial.
+ </p> 
+ <br>
+ <div id='letudiant'>
+  <ul>
+   <li> {% if noterResultatFinal %}Vous n'avez pas encore effectué le test final {% endif %} {% if noterResultatFinal == 0 %} Vous n'avez pas encore effectué le test final {% endif %}</li> <li> Vous avez validé {{ niveauatteint }} niveaux </li> 
+   <li> Vous avez passé {{tps}} sur le site du projet voltaire</li>
+</ul>
+</div><div>
+        <img src="http://webinfo.iutmontp.univ-montp2.fr/~cadarsir/pag/public/testgraphs.php?serializedresult={{ serializedresult }}">
+        <img src="http://webinfo.iutmontp.univ-montp2.fr/~cadarsir/pag/public/testgraphs2.php?sm1={{serializedm1}}&sm2={{serializedm2}}&sm3={{serializedm3}}&sm4={{serializedm4}}&sm5={{serializedm5}}&sm6={{serializedm6}}"></div>
+          <img src="http://webinfo.iutmontp.univ-montp2.fr/~cadarsir/pag/public/testpie.php?serializedtpsniv={{ serializedtpsniv }}&serializedlgniv={{serializedlgniv}}">
+<br><br>
+<a href="http://webinfo.iutmontp.univ-montp2.fr/~cadarsir/pag/public/index.php/contact"> Contacter mon enseignant. </a>
+ {% endif %}
+ {% if user.Login != etudiant.login %}
+ {% if is_granted('ROLE_USER') %}
+ {% if not is_granted('ROLE_ADMIN') %}
+ <p> Il y a un problème, il semble que vous ne soyez pas sur votre page personnelle. Retournez à votre </p> <a href="http://webinfo.iutmontp.univ-montp2.fr/~cadarsir/pag/public/index.php/etudiant/noterEtudiant/{{user.login}}"> page personnelle </a>
+ {% endif %}
+ {% endif %}
+
+ {% endif %}
+ {% endif %}
+
+
+
+ {% endblock %}

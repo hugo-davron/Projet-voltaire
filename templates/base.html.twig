@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width"/>
+  <title>{% block title %}VoltaireQ2Project{% endblock %}</title>
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="shortcut icon" href="https://i.ibb.co/fDqT0fV/Projet-voltaire-icon.gif">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet"> 
+  <style>
+
+    html {font: 18px/1.5 sans-serif;
+      font-family: 'Open Sans', sans-serif;}
+      body{text-align: center;}
+
+      table{margin-left: auto;
+        margin-right: auto;}
+
+        .topnav .icon {
+          display: none;
+        }
+
+
+        header{
+         width: 90vw;
+         position: relative;
+         top:-10px;
+         margin-left: auto;
+         margin-right: auto;
+         background-color: #acbd38;
+         padding: 3%;
+         border-bottom: solid whitesmoke;
+         text-align: center;
+         font-family: sans-serif;
+       }
+       th{
+        border:solid 1px grey;
+        padding:1%;
+        text-align: left;
+        border-top:none;
+        border-bottom:solid 1px #acbd38;
+        border-top-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-top-left-radius: 10px;
+      }
+      table{
+        width: 80vw;
+      }
+
+      .topnav a {
+        text-decoration-line: none;
+        color : white;
+        background-color: #becf4b;
+        font-weight: bold;
+        font-family:  police_texte, arial;
+        border: solid 2px white;
+        padding: 10px;
+        border-top-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border-top-left-radius: 10px;
+        margin-left: 1%;
+      }
+
+      ul{
+        text-align: left;
+      }
+      input[type=number]{
+        border:none;
+        border-bottom: solid 1px grey;
+        border-bottom-right-radius: 10px;
+        font-family:  inherit;
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        text-align: center;
+        color:white;
+        background-color: #acbd38;
+        margin-left: 1%;
+        margin-right: 1%;
+        padding: 0.1%;
+      }
+      button[type=submit]{
+        border:none;
+        border-bottom: solid 1px grey;
+        border-bottom-right-radius: 10px;
+        font-family:  inherit;
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        text-align: center;
+        color:white;
+        background-color: #acbd38;
+        margin-left: 1%;
+        margin-right: 1%;
+        padding: 0.6%;
+      }
+      input[type=password]{
+        border:none;
+        border-bottom: solid 1px grey;
+        border-bottom-right-radius: 10px;
+        font-family:  inherit;
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        text-align: center;
+        color:white;
+        background-color: #acbd38;
+        margin-left: 1%;
+        margin-right: 1%;
+        padding: 0.1%;
+      }
+      input[type=text]{
+        border:none;
+        border-bottom: solid 1px grey;
+        border-bottom-right-radius: 10px;
+        font-family:  inherit;
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        text-align: center;
+        color:white;
+        background-color: #acbd38;
+        margin-left: 1%;
+        margin-right: 1%;
+        padding: 0.1%;
+      }
+      input[type=submit]{
+        border:none;
+        border-bottom: solid 1px grey;
+        border-bottom-right-radius: 10px;
+        font-family:  inherit;
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        text-align: center;
+        color:white;
+        background-color: #acbd38;
+        margin-left: 1%;
+        margin-right: 1%;
+        padding: 1%;
+      }
+      input[type=file]{
+        border:none;
+        border-bottom: solid 1px grey;
+        border-bottom-right-radius: 10px;
+        font-family:  inherit;
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        text-align: center;
+        color:white;
+        background-color: #acbd38;
+        margin-left: 1%;
+        margin-right: 1%;
+        padding: 1%;
+      }
+      #letudiant{
+        margin-left: 33.33%;
+        margin-right: 33.33%;
+      }
+      #menu{
+        margin-left: auto;
+        margin-right: auto;
+        width: 70%;
+      }
+      #logo{
+        width: 9%;
+        position: absolute;
+        top:0px;
+        left:5%;
+      }
+      footer{
+        background-color: rgb(42, 44, 37);
+        color:white;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        position:relative;
+        bottom:-18px;
+        padding-top: 2%;
+        padding-bottom: 2%;
+      }
+      #logo2{
+        width: 9%;
+        position: absolute;
+        right: 5%;
+        top:7%
+      }
+      .colonne{
+        text-align: center;
+        border-top:solid 1px black;}
+
+
+
+        a {
+          text-decoration-line: none;
+          color : #acbd38;
+          font-family:  police_texte, arial;
+
+        }
+        /* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+        @media screen and (max-width: 1740px) {
+          .topnav a:not(:first-child) {display: none;}
+          .topnav a.icon {
+            float: center;
+            display: block;
+          }
+        }
+
+        /* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+        @media screen and (max-width: 1740px) {
+          .topnav.responsive {position: relative;}
+          .topnav.responsive a.icon {
+            position: absolute;
+            right: 0;
+            top: 0;
+          }
+          .topnav.responsive a {
+            float: none;
+            display: block;
+            text-align: left;
+          }
+        }
+
+      </style>
+    </head>
+
+    <div class="example-wrapper">
+      <header>
+        <div id='menu'>
+          <img id = 'logo' src='https://www.anfh.fr/sites/default/files/styles/galerie_photos/public/ged/logo_voltaire.png?itok=enUoTjGz'>
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+          <div class="topnav" id="myTopnav">
+
+            
+            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+            <a href = "http://webinfo.iutmontp.univ-montp2.fr/~cadarsir/pag/public/index.php/logout"> Se déconnecter</a>
+            {% else %}
+            <a href = "http://webinfo.iutmontp.univ-montp2.fr/~cadarsir/pag/public/index.php/login"> Se connecter</a>
+            {% endif %}
+            {% if is_granted('ROLE_ADMIN') %}
+            <a href = "http://webinfo.iutmontp.univ-montp2.fr/~cadarsir/pag/public/index.php/bareme/creerbareme"> Créer un barème    </a>
+            <a href = "http://webinfo.iutmontp.univ-montp2.fr/~cadarsir/pag/public/index.php/etudiant"> Retourner sur la page d'accueil </a>
+            <a href = "http://webinfo.iutmontp.univ-montp2.fr/~cadarsir/pag/public/index.php/etudiant/uploadCSV"> Importer un fichier csv    </a>
+            <a href = "http://webinfo.iutmontp.univ-montp2.fr/~cadarsir/pag/public/index.php/etudiant/generateCSV"> Exporter les notes    </a>
+
+            {% endif %}
+
+            {% if is_granted('ROLE_USER') %}
+
+            <a href="http://webinfo.iutmontp.univ-montp2.fr/~cadarsir/pag/public/index.php/contact"> Contacter mon enseignant. </a>
+            {% endif %}
+            
+
+
+            
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+              <i class="fa fa-bars"></i>
+            </a>
+          </div>
+          <img id='logo2' src='https://i.ibb.co/jLCHYjk/um.png'>
+        </div>
+      </header></div><body>
+        {% block body %}
+
+
+        {% endblock %}
+        {% block javascripts %}
+
+
+        {% endblock %}
+      </body>
+      <script>
+        function myFunction() {
+          var x = document.getElementById("myTopnav");
+          if (x.className === "topnav") {
+            x.className += " responsive";
+          } else {
+            x.className = "topnav";
+          }
+        }</script>
+        <footer>
+          <p> Site projet Voltaire, crée par Romain Cadarsi, Louis Prybys, Numa Maurin et Tupac Rocher</p>
+          <p> Pas de Copyrights @ 2019 - 2020 </p>
+        </footer>
+        </html>

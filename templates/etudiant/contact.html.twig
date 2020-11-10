@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact Enseignant{% endblock %}
+
+{% block body %}
+
+ {% if is_granted('ROLE_USER') %}
+ <h1>Formulaire de contact Enseignant</h1>
+ <p> Vous pouvez envoyer un message à votre Enseignant gérant votre projet Voltaire </p>
+ <p> La mise à jour des données sur ce site se fait de maniere manuelle par l'Enseignant, si vous pensez qu'une mise à jour est nécessaire, signalez le ! </p>
+ </p> 
+ <br>
+
+ <form action="http://webinfo.iutmontp.univ-montp2.fr/~cadarsir/pag/public/index.php/sendmail" method="post">
+      <p>Votre identifiant: <input type="text" value = {{user.login}} name="name" readonly /> </p>
+      <p>Enseignant: <select name="enseignant">
+            {% for enseignant in enseignants |sort %}
+            <option value="{{enseignant.nomEnseignant}}">{{enseignant.nomEnseignant}}</option>
+            {% endfor %}</p>
+      <p>Comments:
+        <br />
+        <textarea name="comments" rows = "12" cols = "35">Bonjour, je vous contacte à propos d'une demande de mise à jour du site. Merci de prendre en compte mon message. Cordialement.</textarea>
+        <br>
+      <p><input type="submit" name="submit" value="Send" />
+        <input type="reset" name="reset" value="Clear Form" />
+      </p>
+    </form>
+
+{% else %}
+</h1><p> Vous n'êtes pas connecté ! cliquez ici pour vous connecter : </p> <a href="http://webinfo.iutmontp.univ-montp2.fr/~cadarsir/pag/public/index.php/login"> Se connecter </a>
+
+{% endif %}
+
+{% endblock %}

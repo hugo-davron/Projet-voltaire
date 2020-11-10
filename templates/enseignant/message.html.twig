@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+{% block title %} Vos messages {% endblock %}
+{% block body %}
+<h1> Bienvenue sur votre boite mail Voltaire !  {{ user.login }} </h1>
+
+{% if is_granted('ROLE_ADMIN') %}
+<p> Voici votre liste de messages, vous en avez {{ messages|length }}</p>
+<table>
+    <tr>
+        <th class=colonne> Nom Etudiant </th>
+        <th class=colonne> Prenom Etudiant </th>
+        <th class=colonne> Identifiant Etudiant </th>
+        <th class=colonne> Message </th>
+        <th class=colonne> Options </th>
+    </tr>
+    {% for message in messages %}
+        {% for etudiant in etudiants |sort %}
+        <tr> <th>{{ etudiant.nomEtudiant }}</th> <th>{{ etudiant.prenomEtudiant }}</th> <th> <a href = "http://webinfo.iutmontp.univ-montp2.fr/~cadarsir/pag/public/index.php/etudiant/noterEtudiant/{{etudiant.login}}" >{{ etudiant.login }} </a></th></tr>
+
+    {% endfor %}
+</table>
+{% elseif is_granted('ROLE_USER') %}
+
+<p> Vous pouvez consulter vos données du projet Voltaire en cliquant ici : </p> <a href="http://webinfo.iutmontp.univ-montp2.fr/~cadarsir/pag/public/index.php/etudiant/noterEtudiant/{{user.login}}"> accéder à mes données </a>
+
+{% else %}
+</h1><p> Vous n'êtes pas connecté ! cliquez ici pour vous connecter : </p> <a href="http://webinfo.iutmontp.univ-montp2.fr/~cadarsir/pag/public/index.php/login"> Se connecter </a>
+
+{% endif %}
+
+{% endblock %}

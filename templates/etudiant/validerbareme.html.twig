@@ -1,0 +1,7 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Validation d'un bareme {% endblock %}
+{% block body %}
+{{message}}
+{{message2 |striptags('<b>,<a>,<li>,<ul>')|raw}}
+{{% endblock %}}
